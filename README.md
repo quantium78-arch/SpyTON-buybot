@@ -23,7 +23,7 @@ python main.py
 7) /on
 
 ## Owner
-/approve <GROUP_ID>  -> allow cross-posts into @SpyTonTrending
+(no approval needed) <GROUP_ID>  -> allow cross-posts into @SpyTonTrending
 /pinleaderboard      -> post leaderboard once + pin
 /leaderboardnow      -> force update
 
@@ -36,3 +36,7 @@ python main.py
 ## New in v3
 - /addtoken can take only the jetton address and auto-detect symbol + pools.
 - /autopools refreshes STONfi/DeDust pools from DexScreener.
+
+
+## Railway build fix
+If Railway fails building wheels (e.g. pydantic-core), keep the included `Dockerfile` in the repo. Railway will detect it and build using Debian `python:3.11-slim`.

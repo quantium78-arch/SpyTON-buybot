@@ -2,11 +2,11 @@ from __future__ import annotations
 import asyncio
 from aiogram import Bot
 from aiogram.exceptions import TelegramBadRequest
-from .db import Database
-from .formatters import format_leaderboard
+from db import Database
+from formatters import format_leaderboard
 
 class LeaderboardService:
-    def __init__(self, bot: Bot, db: Database, trending_channel_id: int, updated_by: str, window_minutes: int, interval_seconds: float):
+    def __init__(self, bot: Bot, db: Database, trending_channel_id: int | str, updated_by: str, window_minutes: int, interval_seconds: float):
         self.bot = bot
         self.db = db
         self.trending_channel_id = trending_channel_id

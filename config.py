@@ -16,6 +16,7 @@ class Config:
     trending_channel_id: int
     trending_channel_username: str
     book_trending_url: str
+    buybot_guide_url: str
 
     tonapi_base: str
     tonapi_key: str
@@ -31,13 +32,9 @@ def load_config() -> Config:
     if not bot_token:
         raise RuntimeError("Missing BOT_TOKEN in .env")
 
-    owner_id = _get_int("OWNER_ID", 0)
-    if not owner_id:
-        raise RuntimeError("Missing OWNER_ID in .env")
+    owner_id = _get_int("OWNER_ID", 0)  # optional for owner-only admin commands
 
-    trending_channel_id = _get_int("TRENDING_CHANNEL_ID", 0)
-    if not trending_channel_id:
-        raise RuntimeError("Missing TRENDING_CHANNEL_ID in .env")
+    trending_channel_id = _get_int("TRENDING_CHANNEL_ID", 0)  # optional if using username
 
     return Config(
         bot_token=bot_token,
@@ -45,6 +42,7 @@ def load_config() -> Config:
         trending_channel_id=trending_channel_id,
         trending_channel_username=os.getenv("TRENDING_CHANNEL_USERNAME", "@SpyTonTrending").strip(),
         book_trending_url=os.getenv("BOOK_TRENDING_URL", "https://t.me/SpyTONTrndBot").strip(),
+        buybot_guide_url=os.getenv("BUYBOT_GUIDE_URL", "").strip(),
         tonapi_base=os.getenv("TONAPI_BASE", "https://tonapi.io").strip().rstrip("/"),
         tonapi_key=os.getenv("TONAPI_KEY", "").strip(),
         dexscreener_base=os.getenv("DEXSCREENER_BASE", "https://api.dexscreener.com").strip().rstrip("/"),

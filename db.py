@@ -8,7 +8,7 @@ PRAGMA journal_mode=WAL;
 CREATE TABLE IF NOT EXISTS groups (
     group_id INTEGER PRIMARY KEY,
     enabled INTEGER NOT NULL DEFAULT 0,
-    approved INTEGER NOT NULL DEFAULT 0,
+    approved INTEGER NOT NULL DEFAULT 1,
     min_buy_ton REAL NOT NULL DEFAULT 0.0,
     token_symbol TEXT,
     jetton_address TEXT,
@@ -65,7 +65,7 @@ class Database:
         return self._conn
 
     async def ensure_group(self, group_id: int):
-        await self.conn.execute("INSERT OR IGNORE INTO groups (group_id) VALUES (?)", (group_id,))
+        await self.conn.execute("INSERT OR IGNORE INTO groups (group_id, approved) VALUES (?, 1)", (group_id,))
         await self.conn.commit()
 
     async def get_group(self, group_id: int) -> GroupConfig:
@@ -138,3 +138,9 @@ class Database:
         cur = await self.conn.execute("SELECT group_id FROM groups WHERE enabled=1")
         rows = await cur.fetchall()
         return [int(r[0]) for r in rows]
+async def list_groups(self) -> list[int]:
+    cur = await self._conn.execute("SELECT group_id FROM groups ORDER BY group_id DESC")
+    rows = await cur.fetchall()
+    return [int(r[0]) for r in rows]
+
+

@@ -3,10 +3,10 @@ import asyncio
 import time
 from typing import Any, Optional
 
-from ..tonapi import TonAPI
-from ..db import Database, GroupConfig
-from ..formatters import BuyEvent
-from ..utils import safe_symbol, nano_to_ton, nano_to_units
+from tonapi import TonAPI
+from db import Database, GroupConfig
+from formatters import BuyEvent
+from utils import safe_symbol, nano_to_ton, nano_to_units
 
 def _walk(obj: Any):
     if isinstance(obj, dict):

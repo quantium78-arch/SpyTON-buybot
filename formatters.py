@@ -1,6 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass
-from .utils import short_addr, tonviewer_tx_link
+from utils import short_addr, tonviewer_tx_link
 
 @dataclass
 class BuyEvent:

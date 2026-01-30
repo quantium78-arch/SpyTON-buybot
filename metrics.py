@@ -2,8 +2,8 @@ from __future__ import annotations
 import time
 from typing import Optional
 
-from .tonapi import TonAPI
-from .dexscreener import DexScreener
+from tonapi import TonAPI
+from dexscreener import DexScreener
 
 class MetricsCache:
     def __init__(self, ttl_seconds: int = 20):
